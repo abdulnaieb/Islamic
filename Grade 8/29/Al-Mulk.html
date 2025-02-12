@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Al-Mulk</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+            
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 2rem;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        #surahImage {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        
+        #surahImage2 {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .ayah {
+            position: absolute;
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .ayah:hover {
+            background-color: rgba(255, 255, 0, 0.3);
+        }
+
+        #audioControls {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        #customAudioPlayer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        #playPauseBtn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #seekBar {
+            flex-grow: 1;
+            margin: 0 15px;
+            -webkit-appearance: none;
+            height: 5px;
+            background: #d3d3d3;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        #seekBar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #3498db;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        #repeatControl {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #repeatControl span {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Al-Mulk</h1>
+
+<!-- Audio Controls -->
+<div id="audioControls">
+    <div id="customAudioPlayer">
+        <button id="playPauseBtn">Play</button>
+        <input type="range" id="seekBar" value="0">
+    </div>
+    <div id="repeatControl">
+        <span>No Repeat</span>
+        <label class="switch">
+            <input type="checkbox" id="repeatToggle">
+            <span class="slider"></span>
+        </label>
+        <span>Repeat</span>
+    </div>
+</div>
+
+<!-- Surah Image -->
+<div id="surahImage">
+    <img src="/C:/Users/Shealth/Downloads/Quran/Grade 8/29/Mulk 1.png" alt="1">
+    <img src="/C:/Users/Shealth/Downloads/Quran/Grade 8/29/Mulk 2.png" alt="1">
+
+    <!-- Divs for each highlighted part of the image (Ayahs) -->
+    <div class="ayah" id="ayah1" style="top: 06%; left: 24%; width: 52%; height: 2.5%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah2" style="top: 09%; left: 08%; width: 84%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah3" style="top: 12.5%; left: 80%; width: 12%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah4" style="top: 12.5%; left: 09%; width: 66%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah5" style="top: 16%; left: 22%; width: 69%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah6" style="top: 16%; left: 08%; width: 12%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah7" style="top: 19.4%; left: 09%; width: 82%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah8" style="top: 22.8%; left: 09%; width: 82%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah9" style="top: 26.2%; left: 09%; width: 82%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah10" style="top: 29.8%; left: 60%; width: 32%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah11" style="top: 29.8%; left: 09%; width: 48%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah12" style="top: 33.1%; left: 09%; width: 82%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah13" style="top: 36.6%; left: 66%; width: 25%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah14" style="top: 36.6%; left: 09%; width: 54%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah15" style="top: 40%; left: 48%; width: 44%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah16" style="top: 40%; left: 09%; width: 36%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah17" style="top: 43.5%; left: 51%; width: 41%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah18" style="top: 43.5%; left: 09%; width: 40%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah19" style="top: 53%; left: 09%; width: 82%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah20" style="top: 56.4%; left: 81%; width: 12%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah21" style="top: 56.4%; left: 09%; width: 69%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah22" style="top: 59.8%; left: 09%; width: 82%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah23" style="top: 63.4%; left: 72%; width: 19%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah24" style="top: 63.4%; left: 09%; width: 60%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah25" style="top: 66.8%; left: 50%; width: 42%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah26" style="top: 66.8%; left: 09%; width: 37%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah27" style="top: 70.3%; left: 48%; width: 44%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah28" style="top: 70.3%; left: 09%; width: 35%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah29" style="top: 73.8%; left: 27%; width: 65%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah30" style="top: 73.8%; left: 08%; width: 14%; height: 03%;" data-start="0"></div>
+    <div class="ayah" id="ayah31" style="top: 77.2%; left: 09%; width: 83%; height: 03%;" data-start="0"></div>
+
+    <div class="ayah" id="ayah32" style="top: 80.6%; left: 13%; width: 73%; height: 03%;" data-start="0"></div>
+    
+</div>
+
+<audio id="audioElement" src="/C:/Users/Shealth/Downloads/Quran/Grade 8/29/Al-Mulk 0.mp3"></audio>
+
+<script>
+    const audio = document.getElementById('audioElement');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const seekBar = document.getElementById('seekBar');
+    const repeatToggle = document.getElementById('repeatToggle');
+
+    const ayahTimings = [
+    { start: 6.400, end: 12.200, ayahs: ['ayah1'] },
+    { start: 12.300, end: 21.500, ayahs: ['ayah2','ayah3'] },
+    { start: 21.600, end: 33.800, ayahs: ['ayah4','ayah5'] },
+    { start: 33.900, end: 51.000, ayahs: ['ayah6','ayah7','ayah8'] },
+    { start: 51.100, end: 62.200, ayahs: ['ayah9','ayah10'] },
+    { start: 62.300, end: 79.100, ayahs: ['ayah11','ayah12','ayah13'] },
+    { start: 79.200, end: 88.500, ayahs: ['ayah14','ayah15'] },
+    { start: 88.600, end: 98.800, ayahs: ['ayah16','ayah17'] },
+    { start: 98.900, end: 116.800, ayahs: ['ayah18','ayah19','ayah20'] },
+    { start: 116.900, end: 135.600, ayahs: ['ayah21','ayah22','ayah23'] },
+    { start: 135.700, end: 147.700, ayahs: ['ayah24','ayah25'] },
+    { start: 147.800, end: 156.000, ayahs: ['ayah26','ayah27'] },
+    { start: 156.100, end: 168.600, ayahs: ['ayah28','ayah29'] },
+    { start: 168.700, end: 180.500, ayahs: ['ayah30','ayah31'] },
+    { start: 180.600, end: 187.200, ayahs: ['ayah32'] },
+];
+
+    let currentAyahIndex = 0;
+    let isAyahEnding = false;
+
+    function highlightAyah(currentTime) {
+        document.querySelectorAll('.ayah').forEach(el => el.style.backgroundColor = 'transparent');
+
+        ayahTimings.forEach((timing) => {
+            if (currentTime >= timing.start && currentTime < timing.end) {
+                timing.ayahs.forEach(ayah => {
+                    document.getElementById(ayah).style.backgroundColor = 'rgba(255, 255, 0, 0.5)';
+                });
+            }
+        });
+    }
+
+    function playAyah(index) {
+        currentAyahIndex = index;
+        audio.currentTime = ayahTimings[index].start;
+        audio.play();
+        highlightAyah(audio.currentTime);
+        playPauseBtn.textContent = 'Pause';
+        isAyahEnding = false;
+    }
+
+    function handleAyahEnd() {
+        if (repeatToggle.checked) {
+            playAyah(currentAyahIndex);
+        } else if (currentAyahIndex < ayahTimings.length - 1) {
+            currentAyahIndex++;
+            playAyah(currentAyahIndex);
+        } else {
+            audio.pause();
+            playPauseBtn.textContent = 'Play';
+            currentAyahIndex = 0;
+            audio.currentTime = 0;
+            highlightAyah(audio.currentTime);
+        }
+    }
+
+    audio.addEventListener('timeupdate', () => {
+        seekBar.value = (audio.currentTime / audio.duration) * 100;
+        highlightAyah(audio.currentTime);
+
+        if (audio.currentTime >= ayahTimings[currentAyahIndex].end) {
+            if (!isAyahEnding) {
+                isAyahEnding = true;
+                handleAyahEnd();
+            }
+        } else {
+            isAyahEnding = false;
+        }
+    });
+
+    document.querySelectorAll('.ayah').forEach((ayah) => {
+        ayah.addEventListener('click', () => {
+            const clickedAyahId = ayah.id;
+            const index = ayahTimings.findIndex(timing => timing.ayahs.includes(clickedAyahId));
+            if (index !== -1) {
+                playAyah(index);
+            }
+        });
+    });
+
+    playPauseBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            playPauseBtn.textContent = 'Pause';
+        } else {
+            audio.pause();
+            playPauseBtn.textContent = 'Play';
+        }
+    });
+
+    seekBar.addEventListener('input', () => {
+        const time = (seekBar.value / 100) * audio.duration;
+        audio.currentTime = time;
+        highlightAyah(time);
+        isAyahEnding = false;
+    });
+
+    audio.addEventListener('ended', () => {
+        if (!repeatToggle.checked) {
+            playPauseBtn.textContent = 'Play';
+            seekBar.value = 0;
+            currentAyahIndex = 0;
+            highlightAyah(0);
+        }
+    });
+
+    highlightAyah(0);
+</script>
+
+</body>
+</html>
